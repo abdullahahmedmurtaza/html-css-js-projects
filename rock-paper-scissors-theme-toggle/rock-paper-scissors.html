@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rock Paper Scissors DOM</title>
+        <link rel="stylesheet" href="style.css">
+                
+    </head>
+    <body>
+        <div class="title-theme-outer">
+            <div class="title-theme-inner">
+                <p class="title">Rock Paper Scissors</p>
+                <div class="theme-button-container">
+            <button class="change-theme-button-sun js-change-theme" onclick="
+        changeTheme()"><img src="images/sun-solid.png" alt="sun-solid" class="js-theme-change-icon-sun theme-change-icon-sun"></button>
+            </div>
+        
+        </div>
+        </div>
+            
+       
+        
+        <div class="move-selection-container">
+            <button onclick="
+        playGame('Rock');
+    " class="move-button js-move-button"><img src="images/rock-emoji.png" alt="rock-emoji" class="move-icon"></button>
+    <button onclick="
+        playGame('Paper');
+    " class="move-button js-move-button"><img src="images/paper-emoji.png" alt="rock-emoji" class="move-icon"></button>
+    <button onclick="
+        playGame('Scissors');
+    " class="move-button js-move-button"><img src="images/scissors-emoji.png" alt="rock-emoji" class="move-icon"></button>
+    </div>
+    <div class="results-container">
+    <p class="js-result result"></p>
+    <p class="js-moves">
+    </p>
+    <p class="js-score"></p>
+
+    <button onclick="
+    score.wins = 0;
+    score.losses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+    " class="reset-button js-reset-button">Reset Score</button>
+
+    </div>
+
+
+    <script src="script.js">
+        
+    </script>
+    </body>
+</html>
