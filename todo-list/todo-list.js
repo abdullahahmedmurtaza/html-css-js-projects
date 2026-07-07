@@ -1,4 +1,9 @@
-const todoList = [];
+const todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+
+function saveTodo(){
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+}
+renderTodo();
 function renderTodo(){
     let todoListHTML = '';
     let html = '';
@@ -10,7 +15,8 @@ function renderTodo(){
         <div>${dueDate}</div>
         <button onclick=
             'todoList.splice(${i},1);
-            renderTodo();' class="delete-todo-button">
+            renderTodo();
+            saveTodo();' class="delete-todo-button">
             Delete
         </button>
         `
@@ -24,6 +30,7 @@ function addTodo(){
     const name = inputElement.value;
     const dueDate = dateElement.value;
     todoList.push({name, dueDate});
+    saveTodo();
     renderTodo();
     inputElement.value = '';
 }
