@@ -3,6 +3,26 @@ const jsScoreElement = document.querySelector('.js-score');
 const jsResultElement = document.querySelector('.js-result');
 const jsMovesElement = document.querySelector('.js-moves');
 updateScoreElement();
+
+let intervalId;
+let isAutoPlaying = false;
+
+function autoPlay(){
+    if(!isAutoPlaying){
+        intervalId = setInterval(function(){
+            const userChoice = checkComputerMove();
+            playGame(userChoice);
+        },2000);
+        isAutoPlaying = true;
+    }else{
+        clearInterval(intervalId);
+        isAutoPlaying = false;
+    }
+}
+
+
+
+
 function playGame(userChoice){  
     const computerChoice = checkComputerMove();
     let result = '';
@@ -82,6 +102,7 @@ function checkComputerMove(){
         const changeThemeElement = document.querySelector('.js-change-theme');
         const bodyElement = document.querySelector('body');
         const resetButtonElement = document.querySelector('.js-reset-button');
+        const autoPlayButtonElement = document.querySelector('.js-auto-play-button')
         const moveButtonElements = document.querySelectorAll('.js-move-button');
         const resultTextElement = document.querySelector('.js-result');
         const themeImageSunElement = document.querySelector('.js-theme-change-icon-sun');
@@ -95,6 +116,7 @@ function checkComputerMove(){
             
         bodyElement.classList.add('light-mode');
         resetButtonElement.classList.add('reset-light-mode');
+        autoPlayButtonElement.classList.add('auto-play-light-mode');
         resultTextElement.classList.add('result-light');
 
         themeImageSunElement.classList.replace('theme-change-icon-sun','theme-change-icon-moon'); 
@@ -109,6 +131,7 @@ function checkComputerMove(){
         
         bodyElement.classList.remove('light-mode');
         resetButtonElement.classList.remove('reset-light-mode');
+        autoPlayButtonElement.classList.remove('auto-play-light-mode');
         resultTextElement.classList.remove('result-light');
         // console.log(themeImageMoonElement);
         

@@ -24,7 +24,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
-.reset-button {
+.reset-button,.auto-play-button {
   background-color: white;
   border: none;
   border-radius: 14px;
@@ -71,7 +71,7 @@ body {
   margin: 20px;
   cursor: pointer;
 }
-.reset-light-mode {
+.reset-light-mode, .auto-play-light-mode {
   background-color: rgb(0, 0, 0);
   color: white;
   border: none;
