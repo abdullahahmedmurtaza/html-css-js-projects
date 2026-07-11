@@ -13,17 +13,33 @@ function renderTodo(){
         html += `
         <div>${name}</div>
         <div>${dueDate}</div>
-        <button onclick=
-            'todoList.splice(${i},1);
-            renderTodo();
-            saveTodo();' class="delete-todo-button">
+        <button class="delete-todo-button js-delete-todo">
             Delete
         </button>
         `
         todoListHTML = html;
     }
     document.querySelector('.js-todo-div').innerHTML = todoListHTML;
+
+    document.querySelectorAll('.js-delete-todo').forEach((deleteButton, index)=>{
+        deleteButton.addEventListener('click',()=>{
+        todoList.splice(index,1);
+        renderTodo();
+        saveTodo();
+        })
+    });
 }
+
+
+
+
+
+
+document.querySelector('.js-add-todo').addEventListener('click',()=>{
+    addTodo();
+});
+
+
 function addTodo(){
     const inputElement = document.querySelector('.js-todo-input');
     const dateElement = document.querySelector('.js-date-input');

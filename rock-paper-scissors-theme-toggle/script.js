@@ -4,6 +4,36 @@ const jsResultElement = document.querySelector('.js-result');
 const jsMovesElement = document.querySelector('.js-moves');
 updateScoreElement();
 
+
+
+document.querySelector('.js-rock-button').addEventListener('click',()=>{
+    playGame('Rock')
+});
+document.querySelector('.js-paper-button').addEventListener('click',()=>{
+    playGame('Paper')
+});
+document.querySelector('.js-scissor-button').addEventListener('click',()=>{
+    playGame('Scissors')
+});
+
+document.body.addEventListener('keydown', (event)=>{
+    switch(event.key){
+        case 'r':
+            playGame('Rock');
+            break;
+        case 'p':
+            playGame('Paper');
+            break;
+        case 's':
+            playGame('Scissors');
+            break;
+        default : //Do nothing
+    }
+});
+
+
+
+
 let intervalId;
 let isAutoPlaying = false;
 
