@@ -31,10 +31,6 @@ function renderTodo(){
 }
 
 
-
-
-
-
 document.querySelector('.js-add-todo').addEventListener('click',()=>{
     addTodo();
 });

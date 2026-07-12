@@ -5,19 +5,18 @@ const jsMovesElement = document.querySelector('.js-moves');
 updateScoreElement();
 
 
-
 document.querySelector('.js-rock-button').addEventListener('click',()=>{
-    playGame('Rock')
+    playGame('Rock');
 });
 document.querySelector('.js-paper-button').addEventListener('click',()=>{
-    playGame('Paper')
+    playGame('Paper');
 });
-document.querySelector('.js-scissor-button').addEventListener('click',()=>{
-    playGame('Scissors')
+document.querySelector('.js-scissors-button').addEventListener('click',()=>{
+    playGame('Scissors');
 });
 
 document.body.addEventListener('keydown', (event)=>{
-    switch(event.key){
+    switch (event.key){
         case 'r':
             playGame('Rock');
             break;
@@ -27,30 +26,64 @@ document.body.addEventListener('keydown', (event)=>{
         case 's':
             playGame('Scissors');
             break;
-        default : //Do nothing
+        case 'a':
+            autoPlay();
+            document.querySelector('.js-auto-play-button').innerHTML === 'Stop Playing'? document.querySelector('.js-auto-play-button').innerHTML = 'Auto-Play' : document.querySelector('.js-auto-play-button').innerHTML = 'Stop Playing'; 
+            break;
+        case 'Backspace':
+            askPrompt();
+        default :
+            //do nothing
     }
+})
+
+document.querySelector('.js-auto-play-button').addEventListener('click',()=>{
+    autoPlay();
 });
 
 
+document.querySelector('.js-auto-play-button').addEventListener('click',()=>{
+    document.querySelector('.js-auto-play-button').innerHTML === 'Stop Playing'? document.querySelector('.js-auto-play-button').innerHTML = 'Auto-Play' : document.querySelector('.js-auto-play-button').innerHTML = 'Stop Playing'; 
+});
 
+
+function askPrompt(){
+    document.querySelector('.js-reset-confirmation').innerHTML = 'Are You sure You Want to reset the score? <button class="js-reset-confirmation-yes">Yes</button> <button class="js-reset-confirmation-no">No</button>';
+    document.querySelector('.js-reset-confirmation-yes').addEventListener('click',()=>{
+            score.wins = 0;
+            score.losses = 0;
+            score.ties = 0;
+            localStorage.removeItem('score');
+            updateScoreElement();
+            removePrompt();
+    });
+    document.querySelector('.js-reset-confirmation-no').addEventListener('click',()=>{
+            removePrompt();
+    });
+}
+
+
+function removePrompt(){
+    document.querySelector('.js-reset-confirmation').innerHTML = '';
+}
+document.querySelector('.js-reset-button').addEventListener('click',()=>{
+    askPrompt();
+});
 
 let intervalId;
 let isAutoPlaying = false;
-
 function autoPlay(){
     if(!isAutoPlaying){
-        intervalId = setInterval(function(){
-            const userChoice = checkComputerMove();
+        intervalId = setInterval(()=>{
+            userChoice = checkComputerMove();
             playGame(userChoice);
-        },2000);
-        isAutoPlaying = true;
+    },2000);
+    isAutoPlaying = true;
     }else{
         clearInterval(intervalId);
         isAutoPlaying = false;
     }
 }
-
-
 
 
 function playGame(userChoice){  
@@ -128,50 +161,45 @@ function checkComputerMove(){
     return computerChoice;
     }
 
-    function changeTheme(){
-        const changeThemeElement = document.querySelector('.js-change-theme');
-        const bodyElement = document.querySelector('body');
-        const resetButtonElement = document.querySelector('.js-reset-button');
-        const autoPlayButtonElement = document.querySelector('.js-auto-play-button')
-        const moveButtonElements = document.querySelectorAll('.js-move-button');
-        const resultTextElement = document.querySelector('.js-result');
-        const themeImageSunElement = document.querySelector('.js-theme-change-icon-sun');
-        if(changeThemeElement.innerHTML === `<img src="images/sun-solid.png" alt="sun-solid" class="js-theme-change-icon-sun theme-change-icon-sun">`){
-                
-        // console.log(moveButtonElements);
-        
-        for(const element of moveButtonElements){
-            element.classList.add('move-button-light');
-        }
+function changeTheme(){
+    const changeThemeElement = document.querySelector('.js-change-theme');
+    const bodyElement = document.querySelector('body');
+    const resetButtonElement = document.querySelector('.js-reset-button');
+    const autoPlayButtonElement = document.querySelector('.js-auto-play-button');
+    const moveButtonElements = document.querySelectorAll('.js-move-button');
+    const resultTextElement = document.querySelector('.js-result');
+    const themeImageSunElement = document.querySelector('.js-theme-change-icon-sun');
+    if(changeThemeElement.innerHTML === `<img src="images/sun-solid.png" alt="sun-solid" class="js-theme-change-icon-sun theme-change-icon-sun">`){
             
-        bodyElement.classList.add('light-mode');
-        resetButtonElement.classList.add('reset-light-mode');
-        autoPlayButtonElement.classList.add('auto-play-light-mode');
-        resultTextElement.classList.add('result-light');
-
-        themeImageSunElement.classList.replace('theme-change-icon-sun','theme-change-icon-moon'); 
-        changeThemeElement.classList.replace('change-theme-button-sun','change-theme-button-moon'); 
-        changeThemeElement.innerHTML = `<img src="images/moon-solid.png" alt="moon-solid" class="js-theme-change-icon-moon theme-change-icon-moon">`;
-        
-        }else{
-            const themeImageMoonElement = document.querySelector('.js-theme-change-icon-moon');
-            for(const element of moveButtonElements){
-            element.classList.remove('move-button-light');
-        }
-        
-        bodyElement.classList.remove('light-mode');
-        resetButtonElement.classList.remove('reset-light-mode');
-        autoPlayButtonElement.classList.remove('auto-play-light-mode');
-        resultTextElement.classList.remove('result-light');
-        // console.log(themeImageMoonElement);
-        
-        themeImageMoonElement.classList.replace('theme-change-icon-moon','theme-change-icon-sun'); 
-        changeThemeElement.classList.replace('change-theme-button-moon','change-theme-button-sun'); 
-        changeThemeElement.innerHTML = `<img src="images/sun-solid.png" alt="sun-solid" class="js-theme-change-icon-sun theme-change-icon-sun">`;
-        }
-
-        
+    // console.log(moveButtonElements);
+    
+    for(const element of moveButtonElements){
+        element.classList.add('move-button-light');
     }
-
-  
         
+    bodyElement.classList.add('light-mode');
+    resetButtonElement.classList.add('reset-light-mode');
+    autoPlayButtonElement.classList.add('auto-play-button-light-mode');
+    resultTextElement.classList.add('result-light');
+
+    themeImageSunElement.classList.replace('theme-change-icon-sun','theme-change-icon-moon'); 
+    changeThemeElement.classList.replace('change-theme-button-sun','change-theme-button-moon'); 
+    changeThemeElement.innerHTML = `<img src="images/moon-solid.png" alt="moon-solid" class="js-theme-change-icon-moon theme-change-icon-moon">`;
+    
+    }else{
+        const themeImageMoonElement = document.querySelector('.js-theme-change-icon-moon');
+        for(const element of moveButtonElements){
+        element.classList.remove('move-button-light');
+    }
+    
+    bodyElement.classList.remove('light-mode');
+    resetButtonElement.classList.remove('reset-light-mode');
+    autoPlayButtonElement.classList.remove('auto-play-button-light-mode');
+    resultTextElement.classList.remove('result-light');
+    // console.log(themeImageMoonElement);
+    
+    themeImageMoonElement.classList.replace('theme-change-icon-moon','theme-change-icon-sun'); 
+    changeThemeElement.classList.replace('change-theme-button-moon','change-theme-button-sun'); 
+    changeThemeElement.innerHTML = `<img src="images/sun-solid.png" alt="sun-solid" class="js-theme-change-icon-sun theme-change-icon-sun">`;
+    }   
+}      
