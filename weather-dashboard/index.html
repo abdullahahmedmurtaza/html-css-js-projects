@@ -8,44 +8,47 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div>
-                <a href="#"><img src="./assets/logo-1-removebg-preview.png" alt="veridex-logo"></a>
-                <p>Veridex</p>
+        <nav class="nav-container">
+            <div class="logo-container">
+                <a href="#"><img src="./assets/veridex-logo.png" alt="veridex-logo" class="logo-img"></a>
+                <span class="logo-text">Veridex</span>
             </div>
-            <div>
-                <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">History</a></li>
-                    <li><a href="#">About</a></li>
+            <div class="nav-list-container">
+                <ul class="nav-list">
+                    <li class="nav-link"><a href="#">Dashboard</a></li>
+                    <li class="nav-link"><a href="#">History</a></li>
+                    <li class="nav-link"><a href="#">About</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <main>
-        <section>
-            <div>
-                <h1>Weather stripped down to the raw facts</h1>
-                <p>A brutalist dashboard that fetches real conditions without the noise. Built with vanilla code to prove the work.</p>
-                <button>Dashboard</button>
-                <button>History</button>
+        <section class="hero-section">
+            <div class="hero-section-left">
+                <h1 class="hero-section-heading">Weather stripped<br/>down to the raw facts</h1>
+                <p>A brutalist dashboard that fetches real conditions without<br/>the noise. Built with vanilla code to prove the work.</p>
+                <div class="hero-button-container">
+                    <button class="hero-dashboard-button">Dashboard</button>
+                    <button class="hero-history-button">History</button>
+                </div>
             </div>
-            <div>
-                <img src="assets/hero-image.png" alt="">
+            <div class="hero-section-right">
+                <img src="assets/hero-image.png" alt="hero-image" class="hero-image">
             </div>
         </section>
 
-        <section>
-            <div>
+        <section class="dashboard-section">
+            <!-- Dashboard Input -->
+            <div class="dashboard-input">
                 <h2>Current conditions displayed with raw precision</h2>
-                <p>The main card shows temperature, wind, humidity, and an icon that tells the story at a glance. No fluff, just the numbers that matter.</p>
+                <p>The main card shows temperature, wind, humidity, and an icon that tells the story<br/>at a glance. No fluff, just the numbers that matter.</p>
                 <div>
-                    <input type="text" placeholder="Enter a city">
-                    <button>Search</button>
+                    <input type="text" placeholder="Enter a city" class="dashboard-city-input-field">
+                    <button class="dashboard-search-button">Search</button>
                 </div>
             </div>
-            <!-- Dashboard -->
+            <!-- Dashboard Output-->
             <div>
                 <!-- Dashboard-Cards-Left -->
                 <div>
@@ -62,13 +65,13 @@
             </div>
         </section>
 
-        <section>
-            <div>
+        <section class="weather-history-section">
+            <div class="weather-history-text">
                 <h2>Weather History</h2>
                 <p>Your past searches live here as simple clickable cards.</p>
             </div>
             <!-- History-Cards-Div -->
-             <div>
+             <div class="history-card-section">
                 <div>
                     <div></div>
                     <div></div>
@@ -82,12 +85,12 @@
                     <div></div>
                 </div>
              </div>
-             <button>Delete History</button>
+             <button class="delete-history-button">Delete History</button>
         </section>
 
-        <section>
+        <section class="how-it-works-section">
             <!-- How-It-Works-Left -->
-            <div>
+            <div class="how-it-works-left">
                 <div>
                     <h3>Name your city</h3>
                     <p>Type a location into the bare input field and search with a single click.</p>
@@ -102,20 +105,20 @@
                 </div>
             </div>
             <!-- How-It-Works-Right -->
-             <div><img src="assets/how-it-works-image.png" alt="how-it-works-image"></div>
+             <div class="how-it-works-right"><img src="assets/how-it-works-image.png" alt="how-it-works-image" class="how-it-works-image"></div>
         </section>
 
     </main>
 
-    <footer>
+    <footer class="footer-section">
         <div>
-            <p>Resources</p>
-            <a href="#">GitHub</a>
-            <a href="#">OpenWeather API</a>
+            <span class="footer-heading">Resources</span>
+            <a href="#" class="footer-link">GitHub</a>
+            <a href="#" class="footer-link">OpenWeather API</a>
         </div>
         <div>
-            <p>Connect with me</p>
-            <a href="#">LinkedIn</a>
+            <span>Connect with me</span>
+            <a href="#" class="footer-link">LinkedIn</a>
         </div>
         <span>Made By Abdullah Ahmed Murtaza</span>
     </footer>

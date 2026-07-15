@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 
 :root {
   --dark-purple: #170116;
@@ -6,9 +11,223 @@
   --slate: #AAADB4;
 }
 
-body{
-    background-color: var(--dark-purple);
+
+
+*{
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+
+
+
+
+body{
+    background-color: var(--dark-purple);
+    color: var(--slate);
+
+    font-family: 'Barlow';
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 45px;
+    overflow-x: hidden;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 82px;
+}
+
+h2{
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 66px;
+  line-height: 77.3px;
+}
+h3{
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 46px;
+  line-height: 54px;
+}
+
+a{
+  text-decoration: none;
+  color: var(--slate);
+}
+
+.logo-img{
+  height: 85px ;
+  width: 144px ;
+  margin-left: 20px;
+}
+.logo-text{
+  font-family: Roboto ;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 40px;
+}
+.nav-container{
+  display: flex;
+  justify-content: space-between;
+  height: 106px;
+  width: 1511px;
+  margin: 30px 20px;
+  margin-bottom: 100px;
+}
+.logo-container{
+  display: flex;
+  align-items: baseline;
+  align-self:;
+  gap: 20px;
+}
+.nav-list{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 95px;
+  list-style-type: none;
+  padding-right: 60px;
+}
+
+.nav-list-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-section{
+  display: flex;
+  justify-content: space-between;
+  width: 1462px;
+  height: 712px;
+  gap: 7rem;
+  margin-bottom: 90px;
+}
+.hero-section-left{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: self-start;
+  margin: 20px;
+  margin-top: 95px;
+}
+
+.hero-section-heading{
+  margin-bottom: 30px;
+}
+.hero-button-container{
+  display: flex;
+  gap: 3rem;
+  margin-top: 41px;
+}
+.hero-dashboard-button{
+  background-color: var(--slate);
+  color: var(--medium-purple);
+  border: none;
+  border-radius: 15px;
+  font-size: 26px;
+  padding: 20px 20px;
+}
+.hero-history-button{
+  background-color: var(--medium-purple);
+  color: var(--slate);
+  border: none;
+  border-radius: 15px;
+  font-size: 26px;
+  padding: 20px;
+  width : 150px
+}
+.hero-image{
+  height: 612px;
+  width: 624px;
+  border-radius: 15px;
+}
+.dashboard-section{
+  height: 1804px;
+  width: 1492px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.dashboard-input{
+  height: 419px;
+  width: 1373px;
+  text-align: center;
+}
+
+::placeholder{
+  color: var(--medium-purple);
+  padding-left: 10px;
+}
+.dashboard-city-input-field{
+  background-color: var(--slate);
+  color: var(--medium-purple);
+  padding: 20px;
+  font-weight:500;
+  font-size: 26px;
+  line-height: 31.2px;
+  border: none;
+  border-radius: 15px;
+}
+
+.dashboard-search-button{
+  background-color: var(--medium-purple);
+  color: var(--slate);
+  padding: 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 26px;
+}
+
+.delete-history-button{
+  background-color: var(--medium-purple);
+  color: var(--slate);
+  padding: 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 26px;
+}
+
+.weather-history-section{
+  text-align: center;
+}
+
+.history-cards-section{
+  width: 1148px;
+  height: 740px;
+}
+
+.how-it-works-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-it-works-left{
+
+}
+.how-it-works-right{
+
+}
+.how-it-works-image{
+  height: 765px;
+  width: 750px;
+}
+.footer-section{
+  background-color: var(--medium-purple);
+}
+.footer-link,.nav-link{
+  font-weight:400;
 }
