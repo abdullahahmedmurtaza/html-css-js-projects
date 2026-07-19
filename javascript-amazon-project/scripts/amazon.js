@@ -1,6 +1,50 @@
-let productsHTML = '';
-products.forEach(product => {
-    productsHTML += `
+import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
+
+// Add a function to push the matching item in the cart.
+function addToCart(productId, productQuantity) {
+  let matchingItem;
+  cart.forEach((cartItem) => {
+    if (cartItem.name === productId) matchingItem = cartItem;
+  });
+  if (matchingItem) matchingItem.productQuantity += productQuantity;
+  else {
+    cart.push({
+      productId,
+      productQuantity,
+    });
+  }
+}
+
+// Add a function to calculate the cart quantity
+
+function calculateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.productQuantity;
+  });
+  // console.log(cartQuantity);
+  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+}
+
+//Add a function to display the added popup
+
+function displayAddedPopup(productId) {
+  document
+    .querySelector(`.js-added-to-cart-${productId}`)
+    .classList.add("js-add-to-cart-clicked");
+  let timeoutId;
+  timeoutId = setTimeout(() => {
+    clearTimeout(timeoutId);
+    document
+      .querySelector(`.js-added-to-cart-${productId}`)
+      .classList.remove("js-add-to-cart-clicked");
+  }, 2000);
+}
+
+let productsHTML = "";
+products.forEach((product) => {
+  productsHTML += `
     <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -20,7 +64,7 @@ products.forEach(product => {
           </div>
 
           <div class="product-price">
-            ${(product.priceCents/100).toFixed(2)}
+            ${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -40,7 +84,7 @@ products.forEach(product => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart js-added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -49,41 +93,21 @@ products.forEach(product => {
             Add to Cart
           </button>
         </div>
-    `
+    `;
 });
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
+document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
-// Display added message and add to cart 
 
-document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
-  button.addEventListener('click',()=>{
-    // console.log('Added');
-    let matchingItem;
-    const productId = button.dataset.productId;
-    const productQuantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-    // console.log(productId);
-    cart.forEach((cartItem)=>{
-      if(cartItem.name === productId)
-        matchingItem = cartItem
-    });
-    if(matchingItem)
-      matchingItem.quantity += productQuantity;
-    else{
-      cart.push({
-        'name' : productId,
-        'quantity' : productQuantity
-      });
-    }
-    // console.log(cart);
-    
+// Call all the functions defined above on the click of the "Add To Cart Button"
 
-    // Calculate the cart quantity
-    let cartQuantity = 0;
-    cart.forEach((cartItem)=>{
-      cartQuantity += cartItem.quantity;
-    });
-    // console.log(cartQuantity);
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
+document.querySelectorAll(".js-add-to-cart-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const { productId } = button.dataset;
+    const productQuantity = Number(
+      document.querySelector(`.js-quantity-selector-${productId}`).value,
+    );
+    addToCart(productId, productQuantity);
+    calculateCartQuantity();
+    displayAddedPopup(productId);
   });
 });
