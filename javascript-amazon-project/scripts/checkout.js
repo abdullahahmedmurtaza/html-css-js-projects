@@ -1,14 +1,15 @@
-import {cart} from '../data/cart.js';
-import  {products} from '../data/products.js';
+import { cart, removeFromCart } from "../data/cart.js";
+import { products } from "../data/products.js";
+import { convertCurrency } from "./utils/money.js";
 
-let cartSummaryHTML = '';
-cart.forEach((cartItem)=>{
 
-    let matchingItem;
-    products.forEach((product)=>{
-        if(cartItem.productId === product.id) matchingItem = product;
-    });
-    cartSummaryHTML += `<div class="cart-item-container">
+let cartSummaryHTML = "";
+cart.forEach((cartItem) => {
+  let matchingItem;
+  products.forEach((product) => {
+    if (cartItem.productId === product.id) matchingItem = product;
+  });
+  cartSummaryHTML += `<div class="cart-item-container js-data-item-container-${matchingItem.id}" >
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -22,7 +23,7 @@ cart.forEach((cartItem)=>{
                   ${matchingItem.name}
                 </div>
                 <div class="product-price">
-                  ${convertCurrency(matchingItem.priceCents)}
+                  $${convertCurrency(matchingItem.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -31,7 +32,7 @@ cart.forEach((cartItem)=>{
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link" data-container-id = "${matchingItem.id}">
                     Delete
                   </span>
                 </div>
@@ -84,4 +85,15 @@ cart.forEach((cartItem)=>{
             </div>
           </div>`;
 });
-document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
+
+// Add delete functionality
+
+document.querySelectorAll(".js-delete-quantity-link").forEach((link) => {
+  const productId = link.dataset.containerId;
+  link.addEventListener("click", () => {
+    // console.log(productId);
+    removeFromCart(productId);
+  });
+});
+
