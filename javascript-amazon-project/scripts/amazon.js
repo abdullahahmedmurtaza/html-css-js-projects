@@ -1,21 +1,6 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
-// Add a function to push the matching item in the cart.
-function addToCart(productId, productQuantity) {
-  let matchingItem;
-  cart.forEach((cartItem) => {
-    if (cartItem.name === productId) matchingItem = cartItem;
-  });
-  if (matchingItem) matchingItem.productQuantity += productQuantity;
-  else {
-    cart.push({
-      productId,
-      productQuantity,
-    });
-  }
-}
-
 // Add a function to calculate the cart quantity
 
 function calculateCartQuantity() {
