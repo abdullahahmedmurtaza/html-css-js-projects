@@ -10,6 +10,7 @@ import convertCurrency from "../utils/money.js";
 // default export for dayjs ESM
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 
@@ -128,6 +129,7 @@ document.querySelectorAll(".js-delete-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
     // console.log(productId);
     removeFromCart(productId);
+    renderPaymentSummary();
     document.querySelector(".js-return-to-home-link").innerHTML =
       calculateCartQuantity();
   });
@@ -198,6 +200,7 @@ document.querySelectorAll('.js-delivery-option').forEach((option)=>{
   option.addEventListener('click', ()=>{
     updateDeliveryOptions(productId,deliveryOptionId);
     renderOrderSummary();
+    renderPaymentSummary();
   });
 });
 }
