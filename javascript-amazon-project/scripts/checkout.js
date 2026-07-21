@@ -39,6 +39,7 @@ let cartSummaryHTML = "";
 let matchingItem;
 const today = dayjs();
 
+function renderOrderSummary(){
 cart.forEach((cartItem) => {
   products.forEach((product) => {
     if (cartItem.productId === product.id) matchingItem = product;
@@ -198,5 +199,8 @@ document.querySelectorAll('.js-delivery-option').forEach((option)=>{
   const {deliveryOptionId, productId} = option.dataset;
   option.addEventListener('click', ()=>{
     updateDeliveryOptions(productId,deliveryOptionId);
+    renderOrderSummary();
   });
 });
+}
+renderOrderSummary();
