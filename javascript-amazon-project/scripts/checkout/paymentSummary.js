@@ -19,11 +19,11 @@ export function paymentSummary(){
     // console.log(productPriceCents);
     // console.log(shippingPriceCents);
        const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
-       console.log(totalBeforeTaxCents);
+    //    console.log(totalBeforeTaxCents);
        const totalAfterTaxCents = totalBeforeTaxCents * 0.1;
-       console.log(totalAfterTaxCents);
+    //    console.log(totalAfterTaxCents);
        const totalCents = totalBeforeTaxCents + totalAfterTaxCents;
-       console.log(totalCents);
+    //    console.log(totalCents);
        
 
        const paymentSummaryHTML = `
