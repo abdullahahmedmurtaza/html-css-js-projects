@@ -1,3 +1,5 @@
-export function convertCurrency(priceCents){
-    return ((priceCents/100).toFixed(2));
+ function convertCurrency(priceCents){
+    return (Math.round(priceCents) / 100).toFixed(2);
 }
+
+export default convertCurrency;
