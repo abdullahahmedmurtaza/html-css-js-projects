@@ -50,7 +50,7 @@ cart.forEach((cartItem) => {
   //   console.log(matchingOption);
   
   // console.log(matchingOption);
-  cartSummaryHTML += `<div class="cart-item-container js-cart-item-container-${matchingItem.id}">
+  cartSummaryHTML += `<div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingItem.id}">
             <div class="delivery-date">
              Delivery Date : ${calculateDeliveryDate(matchingOption)}
             </div>
@@ -65,7 +65,7 @@ cart.forEach((cartItem) => {
                 <div class="product-price">
                   $${convertCurrency(matchingItem.priceCents)}
                 </div>
-                <div class="product-quantity">
+                <div class="product-quantity js-product-quantity-${matchingItem.productId}">
                   <span>
                     Quantity: <span class="quantity-label js-quantity-label-${matchingItem.id}">${cartItem.productQuantity}</span>
                   </span>
@@ -74,7 +74,7 @@ cart.forEach((cartItem) => {
                   </span>
                   <input class="quantity-input js-quantity-input-${matchingItem.id}">
                   <span class="save-quantity-link link-primary js-save-quantity-link-${matchingItem.id}">Save</span>
-                  <span class="delete-quantity-link link-primary js-delete-quantity-link" data-container-id = "${matchingItem.id}">
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${matchingItem.id}" data-container-id = "${matchingItem.id}">
                     Delete
                   </span>
                 </div>
