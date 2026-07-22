@@ -1,3 +1,5 @@
+import { renderOrderSummary } from "../scripts/checkout/orderSummary.js";
+
 export let cart = JSON.parse(localStorage.getItem("cart")) || [
   {
     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -53,7 +55,8 @@ export function removeFromCart(productId) {
   });
   cart = newCart;
   saveToStorage();
-  document.querySelector(`.js-cart-item-container-${productId}`).remove();
+  // document.querySelector(`.js-cart-item-container-${productId}`).remove();
+  renderOrderSummary();
 }
 
 // function to update quantity at checkout

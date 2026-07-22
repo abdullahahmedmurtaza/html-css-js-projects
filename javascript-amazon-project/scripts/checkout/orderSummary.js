@@ -1,7 +1,6 @@
 import {
   cart,
   removeFromCart,
-  calculateCartQuantity,
   updateQuantity,
   updateDeliveryOptions
 } from "../../data/cart.js";
@@ -9,12 +8,16 @@ import { getProduct } from "../../data/products.js";
 import convertCurrency from "../utils/money.js";
 // default export for dayjs ESM
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
+import {calculateDeliveryDate, deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
 import { renderPaymentSummary } from "./paymentSummary.js";
 
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
+console.log(dayjs().add(5,'day').format('MMMM D'));
+console.log(dayjs().add(1,'month').format('MMMM D'));
+console.log(dayjs().subtract(1,'month').format('MMMM D'));
+console.log(dayjs().subtract(1,'month').format('dddd'));
 
-// console.log(dayjs());
 
 // const today = dayjs();
 // const deliveryDate = today.add(7,'days');
@@ -35,7 +38,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 // }
 
 
-const today = dayjs();
+// const today = dayjs();
 
 export function renderOrderSummary(){
 
@@ -44,15 +47,12 @@ let cartSummaryHTML = "";
 cart.forEach((cartItem) => {
   const matchingItem = getProduct(cartItem.productId)
   const matchingOption = getDeliveryOption(cartItem.deliveryOptionId);
-//   console.log(matchingOption);
-  
-  let deliveryDateString = String(matchingOption.deliveryOptionId === '1'? `${today.add(matchingOption.deliveryDays,'day').format('dddd, MMMM D')}` : matchingOption.deliveryOptionId === '2'? `${today.add(matchingOption.deliveryDays,'day').format('dddd, MMMM D')}` : `${today.format('dddd, MMMM D')}`);
-//   console.log(deliveryDateString);
+  //   console.log(matchingOption);
   
   // console.log(matchingOption);
   cartSummaryHTML += `<div class="cart-item-container js-cart-item-container-${matchingItem.id}">
             <div class="delivery-date">
-             Delivery Date : ${deliveryDateString}
+             Delivery Date : ${calculateDeliveryDate(matchingOption)}
             </div>
             <div class="cart-item-details-grid">
               <img class="product-image"
@@ -98,7 +98,7 @@ function deliveryOptionsHTML(matchingItem,cartItem){
   let html = '';
   deliveryOptions.forEach((option)=>{
     const priceString = option.priceCents === 0? 'FREE - ' : `$${convertCurrency(option.priceCents)} - `;
-    const deliveryDate = option.deliveryOptionId === '1'? `${today.add(option.deliveryDays,'day').format('dddd MMMM D')}` : option.deliveryOptionId === '2'? `${today.add(option.deliveryDays,'day').format('dddd MMMM D')}` : `${today.format('dddd, MMMM D')}`;
+    const deliveryDate = calculateDeliveryDate(option)
     let isChecked;
       isChecked = cartItem.deliveryOptionId === option.deliveryOptionId ? 'checked' : ''; 
     html += `<div class="delivery-option js-delivery-option" data-delivery-option-id = "${option.deliveryOptionId}" data-product-id = "${matchingItem.id}">
@@ -130,13 +130,11 @@ document.querySelectorAll(".js-delete-quantity-link").forEach((link) => {
     // console.log(productId);
     removeFromCart(productId);
     renderPaymentSummary();
-    document.querySelector(".js-return-to-home-link").innerHTML =
-      calculateCartQuantity();
+    renderCheckoutHeader();
   });
 });
 
-document.querySelector(".js-return-to-home-link").innerHTML =
-  calculateCartQuantity();
+renderCheckoutHeader();
 
 // Update the quantity
 document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
@@ -165,8 +163,7 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
           updateQuantity(productId, updatedQuantity);
           document.querySelector(`.js-quantity-label-${productId}`).innerHTML =
             `${updatedQuantity}`;
-          document.querySelector(".js-return-to-home-link").innerHTML =
-            calculateCartQuantity();
+            renderCheckoutHeader();
         }
       }
     });
@@ -187,8 +184,7 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
           updateQuantity(productId, updatedQuantity);
           document.querySelector(`.js-quantity-label-${productId}`).innerHTML =
             `${updatedQuantity}`;
-          document.querySelector(".js-return-to-home-link").innerHTML =
-            calculateCartQuantity();
+            renderCheckoutHeader();
         }
       });
   });
