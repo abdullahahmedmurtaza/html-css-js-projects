@@ -4,14 +4,16 @@ import { renderOrderSummary } from "../scripts/checkout/orderSummary.js";
 class Cart {
 
     cartItems;
-    localStorageKey;
+    #localStorageKey;
 
   constructor(localStorageKey){
-    this.localStorageKey = localStorageKey;
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
+    this.#saveToStorage();
   }
 
-    loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(localStorageKey)) || [
+    #loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [
       {
         productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         productQuantity: 2,
@@ -26,8 +28,8 @@ class Cart {
   }
 
   // Save the cart to localStorage
-  saveToStorage() {
-    localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems));
+  #saveToStorage() {
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
  // Add a function to calculate the cart quantity
 
@@ -54,7 +56,7 @@ class Cart {
         deliveryOptionId: "1",
       });
     }
-    this.saveToStorage();
+    this.#saveToStorage();
   }
 
   // function to update quantity at checkout
@@ -62,7 +64,7 @@ class Cart {
     this.cartItems.forEach((cartItem) => {
       if (cartItem.productId === productId) {
         cartItem.productQuantity = newQuantity;
-        this.saveToStorage();
+        this.#saveToStorage();
       }
     });
   }
@@ -77,7 +79,7 @@ class Cart {
     matchingItem.deliveryOptionId = deliveryOptionId;
     // console.log(matchingItem);
 
-    this.saveToStorage();
+    this.#saveToStorage();
 
     // console.log(matchingItem);
   }
@@ -87,7 +89,7 @@ class Cart {
     this.cartItems.forEach((cartItem) => {
       if (cartItem.productId === productId) {
         cartItem.productQuantity = newQuantity;
-        this.saveToStorage();
+        this.#saveToStorage();
       }
     });
   }
@@ -102,7 +104,7 @@ class Cart {
     matchingItem.deliveryOptionId = deliveryOptionId;
     // console.log(matchingItem);
 
-    this.saveToStorage();
+    this.#saveToStorage();
 
     // console.log(matchingItem);
   }
@@ -315,9 +317,15 @@ const businessCart = new Cart('business-cart');
 // cart.localStorageKey = 'cart-oop';
 // businessCart.localStorageKey = 'business-cart';
 
-cart.loadFromStorage();
-businessCart.loadFromStorage();
+// cart.loadFromStorage();
+// businessCart.loadFromStorage();
+
 console.log(cart);
 console.log(businessCart);
 
+console.log(businessCart instanceof Cart);
 
+// Try to modify the private property
+
+// cart.#localStorageKey = 'aaaaa';
+// console.log(cart.#localStorageKey);
