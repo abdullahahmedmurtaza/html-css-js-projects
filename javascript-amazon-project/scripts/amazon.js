@@ -59,6 +59,8 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
+          ${product.extraInfoHTML()}
+
           <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
@@ -67,6 +69,7 @@ products.forEach((product) => {
           <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${product.id}">
             Add to Cart
           </button>
+
         </div>
     `;
 });
