@@ -580,3 +580,20 @@ export const products = [
 });
 
 // console.log(products);
+
+
+// Practice using built-in classes.
+// -------------------------------
+
+// const date = new Date();
+// console.log(date);
+// for the current time
+// console.log(date.toLocaleTimeString());
+// DayJS uses this class behind-the-scenes
+
+// 'this' keyword can also be used outside of a class but it is undefined
+// It historically pointed to the window object but when modules were introduced JS made it undefined.
+
+// 'this' is also undefined inside a regular function.
+
+// Inside a function we can use 'this' to whatever we want by using the .call() method. 
