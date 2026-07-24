@@ -1,6 +1,21 @@
 import { renderOrderSummary } from "../scripts/checkout/orderSummary.js";
 
-export let cart;
+
+export let cart = [];
+
+export function loadCart(func){
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load',()=>{
+    console.log(xhr.response);
+    func();
+  });
+  xhr.open('GET','https://supersimplebackend.dev/cart');
+  xhr.send();
+}
+
+// loadCart();
+
+
 loadFromStorage();
 export function loadFromStorage(){
   cart = JSON.parse(localStorage.getItem("cart")) || [
@@ -15,9 +30,8 @@ export function loadFromStorage(){
     deliveryOptionId: '1'
   },
 ];
-} 
 
-
+}
 
 // Save the cart to localStorage
 function saveToStorage() {

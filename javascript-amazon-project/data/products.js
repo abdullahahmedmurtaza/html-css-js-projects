@@ -27,7 +27,7 @@ export function loadProducts(func){
   
 }
 
-loadProducts();
+// loadProducts();
 
 
 class Product{
