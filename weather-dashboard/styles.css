@@ -283,10 +283,60 @@ button{
   margin-top: 45px;
 }
 
-.history-cards-section {
-  width: 1148px;
+.history-card-section {
   height: 740px;
+  display: flex;
+  justify-content: space-between;
+  gap: 90px;
 }
+
+.history-card-1,.history-card-2,.history-card-3{
+
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 40px;
+  gap: 60px;
+  background: #551A61;
+  background: linear-gradient(90deg, rgba(85, 26, 97, 1) 16%, rgba(156, 116, 166, 1) 49%, rgba(148, 102, 111, 1) 70%, rgba(62, 0, 59, 1) 100%);
+  opacity: 55%;
+  height: 740px;
+  width: 430px;
+  border-radius: 35px;
+}
+
+.history-card-upper-part{
+  border-radius: 40px;
+  width: 356px;
+  height: 341px;
+  background-color: rgba(255, 255, 255, 0.122);
+  backdrop-filter: blur(30px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.309);
+  text-align: center;
+}
+
+
+.history-card-lower-part{
+  border-radius: 40px;
+  width: 351px;
+  height: 191px;
+  background-color: rgba(255, 255, 255, 0.122);
+  backdrop-filter: blur(30px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.309);
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .how-it-works-section {
   display: flex;
