@@ -199,6 +199,69 @@ button{
   justify-content: center;
 }
 
+.dashboard-output-section{
+  width: 1492px;
+  height: 1317px;
+  background: #551A61;
+  background: linear-gradient(90deg, rgba(85, 26, 97, 1) 16%, rgba(156, 116, 166, 1) 49%, rgba(148, 102, 111, 1) 70%, rgba(62, 0, 59, 1) 100%);
+  opacity: 60%;
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+}
+
+.dashboard-grid-container-left{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 1208px;
+}
+
+.dashboard-card-1, .dashboard-card-2{
+  width: 501px;
+  border-radius: 40px;
+}
+.dashboard-card-2{
+  height: 472px;
+}
+.dashboard-card-1{
+  height: 654px;
+}
+
+
+
+.dashboard-grid-container-right{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 438px 438px;
+  height: 1208px;
+  gap: 80px;
+}
+
+.dashboard-card-group-right{
+  width: 356px;
+  height: 438px;
+  border-radius: 40px;
+}
+
+
+
+
+
+
+
+.dashboard-cards{
+  background-color: rgba(255, 255, 255, 0.122);
+  backdrop-filter: blur(30px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.309);
+  text-align: center;
+}
+
+
+
+
+
+
 .delete-history-button {
   background-color: var(--medium-purple);
   color: var(--slate);
