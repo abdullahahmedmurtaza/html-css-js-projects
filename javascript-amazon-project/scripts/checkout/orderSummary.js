@@ -4,7 +4,7 @@ import {
   updateQuantity,
   updateDeliveryOptions
 } from "../../data/cart.js";
-import { getProduct } from "../../data/products.js";
+import { getProduct, loadProducts } from "../../data/products.js";
 import convertCurrency from "../utils/money.js";
 // default export for dayjs ESM
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -17,6 +17,16 @@ console.log(dayjs().add(5,'day').format('MMMM D'));
 console.log(dayjs().add(1,'month').format('MMMM D'));
 console.log(dayjs().subtract(1,'month').format('MMMM D'));
 console.log(dayjs().subtract(1,'month').format('dddd'));
+
+
+
+
+loadProducts(()=>{
+  renderOrderSummary();
+  renderPaymentSummary();
+  renderCheckoutHeader();
+});
+
 
 
 // const today = dayjs();
@@ -45,11 +55,11 @@ export function renderOrderSummary(){
 let cartSummaryHTML = "";
 
 cart.forEach((cartItem) => {
-  const matchingItem = getProduct(cartItem.productId)
-  const matchingOption = getDeliveryOption(cartItem.deliveryOptionId);
-  //   console.log(matchingOption);
   
-  // console.log(matchingOption);
+  const matchingItem = getProduct(cartItem.productId);
+  const matchingOption = getDeliveryOption(cartItem.deliveryOptionId);
+  console.log(matchingItem.id);
+  
   cartSummaryHTML += `<div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingItem.id}">
             <div class="delivery-date">
              Delivery Date : ${calculateDeliveryDate(matchingOption)}

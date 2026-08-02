@@ -1,23 +1,14 @@
-import convertCurrency from '../scripts/utils/money.js';
+import convertCurrency from '../../scripts/utils/money.js';
 
-// Test suite --> group of tests
-console.log('Test Suite ==> convertCurrency');
-
-// test name
-console.log('converts cents into dollars');
-
-// test case
-if(convertCurrency(2095) === '20.95') console.log('passed');
-else console.log('failed');
-
-console.log('checks for 0 cents');
-
-if(convertCurrency(0) === '0.00') console.log('passed');
-else console.log('failed');
-
-console.log('checks for rounding');
-
-if(convertCurrency(2000.5) === '20.01') console.log('passed');
-else console.log('failed');
-
+describe('Test Suite : convertCurrency',()=>{
+    it('works with zero',()=>{
+        expect(convertCurrency(0)).toEqual('0.00');
+    });
+    it('converts cents into dollars',()=>{
+        expect(convertCurrency(2095)).toEqual('20.95');
+    });
+    it('rounds up to the nearest cent',()=>{
+        expect(convertCurrency(2000.5)).toEqual('20.01');
+    });
+});
 

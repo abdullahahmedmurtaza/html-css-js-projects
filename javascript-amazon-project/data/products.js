@@ -1,12 +1,5 @@
 import convertCurrency from "../scripts/utils/money.js";
 
-export function getProduct(productId) {
-  let matchingProduct;
-  products.forEach((product) => {
-    if (productId === product.id) matchingProduct = product;
-  });
-  return matchingProduct;
-}
 
 export let products = [];
 
@@ -27,7 +20,17 @@ export function loadProducts(func){
   
 }
 
-// loadProducts();
+export function getProduct(productId) {
+  console.log(products);
+  let matchingProduct;
+  products.forEach((product) => {
+    if (productId === product.id) matchingProduct = product;
+  });
+  return matchingProduct;
+}
+
+
+
 
 
 class Product{
