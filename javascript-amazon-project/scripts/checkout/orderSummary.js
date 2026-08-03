@@ -69,10 +69,10 @@ cart.forEach((cartItem) => {
                 src="${matchingItem.image}">
 
               <div class="cart-item-details">
-                <div class="product-name">
+                <div class="product-name js-product-name">
                   ${matchingItem.name}
                 </div>
-                <div class="product-price">
+                <div class="product-price js-product-price">
                   ${matchingItem.getPrice()}
                 </div>
                 <div class="product-quantity js-product-quantity-${matchingItem.productId}">
@@ -113,7 +113,9 @@ function deliveryOptionsHTML(matchingItem,cartItem){
       isChecked = cartItem.deliveryOptionId === option.deliveryOptionId ? 'checked' : ''; 
     html += `<div class="delivery-option js-delivery-option" data-delivery-option-id = "${option.deliveryOptionId}" data-product-id = "${matchingItem.id}">
                   <input type="radio" ${isChecked}
-                    class="delivery-option-input"
+                    class="delivery-option-input
+                    delivery-option-input-${option.deliveryOptionId}-${matchingItem.id}
+                    "
                     name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">
@@ -202,6 +204,7 @@ document.querySelectorAll(".js-update-quantity-link").forEach((link) => {
 
 // Update the cart and the page when selecting a delivery option
 document.querySelectorAll('.js-delivery-option').forEach((option)=>{
+
   const {deliveryOptionId, productId} = option.dataset;
   option.addEventListener('click', ()=>{
     updateDeliveryOptions(productId,deliveryOptionId);
