@@ -95,12 +95,13 @@ export function updateQuantity(productId, newQuantity) {
 export function updateDeliveryOptions(productId, deliveryOptionId){
   let matchingItem;
   cart.forEach((cartItem)=>{
-    if (cartItem.productId === productId) matchingItem = cartItem;
-  });
-  matchingItem.deliveryOptionId = deliveryOptionId;
+    if (cartItem.productId === productId) {matchingItem = cartItem;
+      matchingItem.deliveryOptionId = deliveryOptionId;
   // console.log(matchingItem);
-  
   saveToStorage();
+    }
+  });
+  
 
   // console.log(matchingItem);
   
