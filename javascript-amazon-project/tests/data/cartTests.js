@@ -6,7 +6,6 @@ import {
   updateDeliveryOptions,
 } from "../../data/cart.js";
 import { loadProducts } from "../../data/products.js";
-import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 
 describe("Test Suite : addToCart", () => {
   beforeEach(() => {
