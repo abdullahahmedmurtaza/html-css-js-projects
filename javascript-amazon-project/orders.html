@@ -96,12 +96,8 @@
               </button>
             </div>
 
-            <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
+            <div class="product-actions js-product-actions">
+              
             </div>
 
             <div class="product-image-container">
@@ -125,7 +121,8 @@
             </div>
 
             <div class="product-actions">
-              <a href="tracking.html">
+              <!-- Testing basic URL params -->
+              <a href="tracking.html?orderId=123&productId=456">
                 <button class="track-package-button button-secondary">
                   Track package
                 </button>
@@ -186,5 +183,10 @@
         </div>
       </div>
     </div>
+    <script>
+      // Getting the URL params out of the URL
+      const url = new URL(window.location.href);
+      console.log(url.searchParams.get('orderId'));
+    </script>
   </body>
 </html>
